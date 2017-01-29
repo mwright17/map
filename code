@@ -1,0 +1,53 @@
+<html>
+<head>
+<script type="text/javascript" src="data1.js"></script>
+                <style>
+                #mymap {
+                                width:100%;
+                                height:700px;
+                }
+                </style>
+                <script src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDqoXJjxHftQfABfzV8vHQwmlhH3NZ9CIA"></script>
+                <script>
+                function init(){
+                                var mapDiv = document.getElementById("mymap");
+                                var mapOptions = {
+                                                center: new google.maps.LatLng (33.7489954, -84.3879824),
+                                                zoom: 6,
+                                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                                };
+                                var map = new google.maps.Map(mapDiv, mapOptions);
+                                var gaCounty= createOverlay();
+                                    gaCounty.setMap(map);
+                }
+                function createOverlay(){
+                                var overLayCoords = new Array();
+                                var processedData =ga.split(";");
+                                for (var i=0; i<processedData.length; i++){
+                                                var xyCoords = processedData[i].split(",");
+                                                overLayCoords.push(new google.maps.LatLng(xyCoords[0],xyCoords[1]));
+                }
+               
+                var myOverlay = new google.maps.Polygon({
+               
+                                paths: overLayCoords,
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0.35
+                });
+               
+                return myOverlay
+}
+window.onload = init;
+</script>
+ 
+ 
+                </script>
+</head>
+<body>
+                <h2>My First Map</h2>
+                <div id="mymap")</div>
+</body>
+</html>    
